@@ -1,26 +1,6 @@
 \documentclass{report}[10pt]
 
 \usepackage[colorlinks=true, linkcolor=black, urlcolor=blue]{hyperref}
-\usepackage{forarray}
-\usepackage{ifthen}
-
-\newcommand{\rawDict}{a: 3, b: 4}
-\newcommand{\rawList}{file1 | file 2 , file 3 | file 4}
-\newcommand{\thisNum}{\the \thislevelcount}
-\newcommand{\indexOf}[3]{
-	\ForEachX{#3}{\ifthenelse{\equal{\thisNum}{#2}}{\thislevelitem}{}}{#1}
-}
-\newcommand{\dictionaryKey}[1]{\indexOf{#1}{1}{:}}
-\newcommand{\dictionaryValue}[1]{\indexOf{#1}{2}{:}}
-
-\newcommand{\dictionaryGet}[2]{
-	\ForEachX{,}{
-		%\ifthenelse{\equal{#2}{\dictionaryKey{\thislevelitem}}}
-		%	{\dictionaryValue{\thislevelitem}}
-		%	{}
-		\dictionaryKey{\thislevelitem}
-	}{#1}
-}
 
 
 \title{Simian Report}
@@ -53,24 +33,5 @@ This report contains several chapters which are different views of the result of
 This chapter contains all the raw data from the Simian tool. It is included here so that the original Simian report is not needed (except to maybe recompile this document) and can be discarded. All the blocks that are listed as duplicates are placed in this chapeter. Each section contains one block, and states the source files, and their start and ending lines, along with how much data is matching.
 
 If this report is generated on the same machine as the Simian report was generated, and the report has access to the same files as the simian report, then this section will gain additional data not included in the Simian Report. This will include the size of the files, as well as the lines of code that are marked as matching. Including the lines of code could potentially make this report very large, so be warned.
-
-\ForEachX{,}{
-\begin{enumerate}
-	
-	\ForEachSublevel{|}{
-		\item \thislevelitem
-	}
-
-\end{enumerate}
-}{\rawList}
-
-
-
-\ForEachX{,}{
-	\dictionaryKey{\thislevelitem} - \dictionaryValue{\thislevelitem} \\
-}
-
-Test TEST\\
-\dictionaryGet{\rawDict}{a}
 
 \end{document}
