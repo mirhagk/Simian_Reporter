@@ -10,6 +10,8 @@ namespace Simian_Reporter
     {
         static void Main(string[] args)
         {
+            var report = Report.LoadFromXML(System.IO.File.ReadAllText("test.xml"));
+            Console.ReadKey();
         }
     }
 }
