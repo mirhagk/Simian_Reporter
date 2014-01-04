@@ -1,0 +1,38 @@
+\documentclass{report}[10pt]
+
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue]{hyperref}
+\usepackage{forarray}
+
+
+\title{Simian Report}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+\chapter{About this report}
+
+This report was auto-generated using the Simian Reporter tool. This tool takes the result of running the \href{http://www.harukizaemon.com/simian/index.html}{Simian code detection tool} and generates this report based on that. This report is very useful to look at the results when running Simian on a large number of lines of code, where it reports many duplicate blocks. You can use this report to get a better idea of what files should have common functionality removed. It's also useful as a team report to report on the amount of code duplication.
+
+\section{Copyright}
+
+This report tool is free to use for non-commercial/non-government and evaluation purposes (evaluation must be no longer than 15 days). In order to generate reports for commercial or government purposes, an appropriate license must be obtained for both Simian and for this tool.
+
+These reports may only be distributed if the generator of the reports has the permission of both Simian and this report generator.
+
+\section{Parts of this report}
+
+This report contains several chapters which are different views of the result of the code analysis. Use whichever view is most appropriate.
+
+\subsection{File to File comparison}
+
+\subsection{Raw Data}
+
+This chapter contains all the raw data from the Simian tool. It is included here so that the original Simian report is not needed (except to maybe recompile this document) and can be discarded. All the blocks that are listed as duplicates are placed in this chapeter. Each section contains one block, and states the source files, and their start and ending lines, along with how much data is matching.
+
+If this report is generated on the same machine as the Simian report was generated, and the report has access to the same files as the simian report, then this section will gain additional data not included in the Simian Report. This will include the size of the files, as well as the lines that are marked as matching.
+
+\end{document}
