@@ -18,5 +18,9 @@ namespace Simian_Reporter
             }
             return null;
         }
+        public static int AttributeAsInt(this XmlNode node, string attributeName)
+        {
+            return int.Parse(node.Attributes[attributeName].Value);
+        }
     }
 }
