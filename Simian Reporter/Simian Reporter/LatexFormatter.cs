@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Simian_Reporter
 {
+    public partial class LaTeX_Report
+    {
+        public string Text;
+    }
     class LatexFormatter
     {
         public Dictionary<string, string> replacementStrings = new Dictionary<string, string>()
@@ -17,6 +21,9 @@ namespace Simian_Reporter
         };
         public static string GenerateReport(Report report)
         {
+            LaTeX_Report output = new LaTeX_Report();
+            output.Text = report.summary.TotalSignificantLineCount.ToString();
+            return output.TransformText();
         }
     }
 }

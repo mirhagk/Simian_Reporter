@@ -1,0 +1,30 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+\documentclass{report}[10pt]
+
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue]{hyperref}
+\usepackage{textcomp }
+\usepackage{forarray}
+
+
+\newcommand{\fileLocation}[2]{$\textrangle$ #1 \textbf{---} #2}
+\newcommand{\fileVs}[1]{
+
+	\ForEachX{|}{\thislevelitem}{#1}
+}
+
+\title{Simian Report}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+<#=Text#>
+
+\end{document}

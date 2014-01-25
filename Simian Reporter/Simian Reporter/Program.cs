@@ -11,6 +11,8 @@ namespace Simian_Reporter
         static void Main(string[] args)
         {
             var report = Report.LoadFromXML(System.IO.File.ReadAllText("test.xml"));
+            System.IO.File.WriteAllText("test.tex", LatexFormatter.GenerateReport(report));
+            Console.WriteLine("Done");
             Console.ReadKey();
         }
     }
