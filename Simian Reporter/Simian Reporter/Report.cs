@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Simian_Reporter
 {
-    class Report
+    public class Report
     {
         public class Set
         {
@@ -38,13 +38,13 @@ namespace Simian_Reporter
         }
         public class Summary
         {
-            public int DuplicateFileCount{get;set;}
-            public int DuplicateLineCount{get;set;}
-            public int DuplicateBlockCount{get;set;}
-            public int TotalFileCount{get;set;}
-            public int TotalRawLineCount{get;set;}
-            public int TotalSignificantLineCount{get;set;}
-            public int ProcessingTime{get;set;}
+            public int DuplicateFileCount { get; set; }
+            public int DuplicateLineCount { get; set; }
+            public int DuplicateBlockCount { get; set; }
+            public int TotalFileCount { get; set; }
+            public int TotalRawLineCount { get; set; }
+            public int TotalSignificantLineCount { get; set; }
+            public int ProcessingTime { get; set; }
             public Summary(XElement node)
             {
                 DuplicateFileCount = node.Attribute("duplicateFileCount").Value.AsInt();
