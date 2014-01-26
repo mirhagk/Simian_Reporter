@@ -113,17 +113,21 @@ namespace Simian_Reporter
             
             #line default
             #line hidden
-            this.Write(@"\% reduction.
-
-
-            public int DuplicateFileCount { get; set; }
-            public int DuplicateLineCount { get; set; }
-            public int DuplicateBlockCount { get; set; }
-            public int TotalFileCount { get; set; }
-            public int TotalRawLineCount { get; set; }
-            public int TotalSignificantLineCount { get; set; }
-            public int ProcessingTime { get; set; }
-
+            this.Write("\\% reduction.\r\n\r\nThe duplicate lines are in ");
+            
+            #line 57 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(report.summary.DuplicateBlockCount));
+            
+            #line default
+            #line hidden
+            this.Write(" blocks.\r\n\r\nThe Simian tool took ");
+            
+            #line 59 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(report.summary.ProcessingTime));
+            
+            #line default
+            #line hidden
+            this.Write(@" seconds to generate.
 
 \chapter{File to File comparison}
 
