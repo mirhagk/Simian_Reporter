@@ -8,7 +8,7 @@ namespace Simian_Reporter
 {
     public partial class LaTeX_Report
     {
-        public string Text;
+        public Report report;
     }
     class LatexFormatter
     {
@@ -22,7 +22,7 @@ namespace Simian_Reporter
         public static string GenerateReport(Report report)
         {
             LaTeX_Report output = new LaTeX_Report();
-            output.Text = report.summary.TotalSignificantLineCount.ToString();
+            output.report = report;
             return output.TransformText();
         }
     }
