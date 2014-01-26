@@ -70,7 +70,59 @@ namespace Simian_Reporter
             
             #line default
             #line hidden
-            this.Write(@" duplicate files.
+            this.Write(" duplicate files, with a total of ");
+            
+            #line 53 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(report.summary.DuplicateLineCount));
+            
+            #line default
+            #line hidden
+            this.Write(".\r\n\r\nThe project contains ");
+            
+            #line 55 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(report.summary.TotalRawLineCount));
+            
+            #line default
+            #line hidden
+            this.Write(" of which ");
+            
+            #line 55 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(report.summary.TotalSignificantLineCount));
+            
+            #line default
+            #line hidden
+            this.Write(" are significants lines\\footnote{Significant lines are lines that aren\'t whitespa" +
+                    "ce or comments, or other noise}. This means ");
+            
+            #line 55 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(string.Format("{0:0.#}",(float)report.summary.DuplicateLineCount/report.summary.TotalSignificantLineCount*100)));
+            
+            #line default
+            #line hidden
+            this.Write("\\% of lines are duplicated, and the project could be reduced to ");
+            
+            #line 55 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture((float)report.summary.TotalSignificantLineCount - report.summary.DuplicateLineCount));
+            
+            #line default
+            #line hidden
+            this.Write(" significant lines of code, a ");
+            
+            #line 55 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(string.Format("{0:0.#}",((float)report.summary.TotalSignificantLineCount - report.summary.DuplicateLineCount)/report.summary.TotalSignificantLineCount*100)));
+            
+            #line default
+            #line hidden
+            this.Write(@"\% reduction.
+
+
+            public int DuplicateFileCount { get; set; }
+            public int DuplicateLineCount { get; set; }
+            public int DuplicateBlockCount { get; set; }
+            public int TotalFileCount { get; set; }
+            public int TotalRawLineCount { get; set; }
+            public int TotalSignificantLineCount { get; set; }
+            public int ProcessingTime { get; set; }
 
 
 \chapter{File to File comparison}

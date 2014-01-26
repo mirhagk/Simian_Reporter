@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LatexFormatter.cs" />
-    <Compile Include="LaTeX_Report.cs">
+    <Compile Include="LaTeX_Report1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LaTeX_Report.tt</DependentUpon>
@@ -56,7 +56,7 @@
     <None Include="App.config" />
     <None Include="LaTeX_Report.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>LaTeX_Report.cs</LastGenOutput>
+      <LastGenOutput>LaTeX_Report1.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

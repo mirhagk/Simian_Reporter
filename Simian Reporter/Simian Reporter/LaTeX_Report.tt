@@ -50,7 +50,18 @@ If this report is generated on the same machine as the Simian report was generat
 
 \chapter{Overview}
 
-The project scanned has <#=report.summary.DuplicateFileCount#> duplicate files.
+The project scanned has <#=report.summary.DuplicateFileCount#> duplicate files, with a total of <#=report.summary.DuplicateLineCount#>.
+
+The project contains <#=report.summary.TotalRawLineCount#> of which <#=report.summary.TotalSignificantLineCount#> are significants lines\footnote{Significant lines are lines that aren't whitespace or comments, or other noise}. This means <#=string.Format("{0:0.#}",(float)report.summary.DuplicateLineCount/report.summary.TotalSignificantLineCount*100)#>\% of lines are duplicated, and the project could be reduced to <#=(float)report.summary.TotalSignificantLineCount - report.summary.DuplicateLineCount#> significant lines of code, a <#=string.Format("{0:0.#}",((float)report.summary.TotalSignificantLineCount - report.summary.DuplicateLineCount)/report.summary.TotalSignificantLineCount*100)#>\% reduction.
+
+
+            public int DuplicateFileCount { get; set; }
+            public int DuplicateLineCount { get; set; }
+            public int DuplicateBlockCount { get; set; }
+            public int TotalFileCount { get; set; }
+            public int TotalRawLineCount { get; set; }
+            public int TotalSignificantLineCount { get; set; }
+            public int ProcessingTime { get; set; }
 
 
 \chapter{File to File comparison}
