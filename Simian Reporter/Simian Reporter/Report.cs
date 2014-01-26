@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
+using System.Xml.Linq;
 
 namespace Simian_Reporter
 {
@@ -16,20 +16,20 @@ namespace Simian_Reporter
                 public string SourceFile { get; set; }
                 public int StartLine { get; set; }
                 public int EndLine { get; set; }
-                public Block(XmlNode node)
+                public Block(XElement node)
                 {
-                    SourceFile = node.Attributes["sourceFile"].Value;
-                    StartLine = node.AttributeAsInt("startLineNumber");
-                    EndLine = node.AttributeAsInt("endLineNumber");
+                    SourceFile = node.Attribute("sourceFile").Value;
+                    StartLine = node.Attribute("startLineNumber").Value.AsInt();
+                    EndLine = node.Attribute("endLineNumber").Value.AsInt();
                 }
             }
             public int LineCount { get; set; }
             public Block[] Blocks { get; set; }
-            public Set(XmlNode node)
+            public Set(XElement node)
             {
-                LineCount = int.Parse(node.Attributes["lineCount"].Value);
+                LineCount = node.Attribute("lineCount").Value.AsInt();
                 List<Block> blocks = new List<Block>();
-                foreach (XmlNode child in node.ChildNodes)
+                foreach (XElement child in node.Elements())
                 {
                     blocks.Add(new Block(child));
                 }
@@ -45,15 +45,15 @@ namespace Simian_Reporter
             public int TotalRawLineCount{get;set;}
             public int TotalSignificantLineCount{get;set;}
             public int ProcessingTime{get;set;}
-            public Summary(XmlNode node)
+            public Summary(XElement node)
             {
-                DuplicateFileCount = node.AttributeAsInt("duplicateFileCount");
-                DuplicateLineCount = node.AttributeAsInt("duplicateLineCount");
-                DuplicateBlockCount = node.AttributeAsInt("duplicateBlockCount");
-                TotalFileCount = node.AttributeAsInt("totalFileCount");
-                TotalRawLineCount = node.AttributeAsInt("totalRawLineCount");
-                TotalSignificantLineCount = node.AttributeAsInt("totalSignificantLineCount");
-                ProcessingTime = node.AttributeAsInt("processingTime");
+                DuplicateFileCount = node.Attribute("duplicateFileCount").Value.AsInt();
+                DuplicateLineCount = node.Attribute("duplicateLineCount").Value.AsInt();
+                DuplicateBlockCount = node.Attribute("duplicateBlockCount").Value.AsInt();
+                TotalFileCount = node.Attribute("totalFileCount").Value.AsInt();
+                TotalRawLineCount = node.Attribute("totalRawLineCount").Value.AsInt();
+                TotalSignificantLineCount = node.Attribute("totalSignificantLineCount").Value.AsInt();
+                ProcessingTime = node.Attribute("processingTime").Value.AsInt();
             }
 
         }
@@ -71,25 +71,18 @@ namespace Simian_Reporter
         public static Report LoadFromXML(string xml)
         {
             xml = CleanXML(xml);
-            XmlDocument document = new XmlDocument();
-            document.LoadXml(xml);
+            var document = XDocument.Parse(xml);
 
             List<Set> sets = new List<Set>();
             Summary summary = null;
-            foreach (XmlNode node in document.FirstElementChild().FirstChild.ChildNodes)
+            var group = document.Element("simian").Element("check");
+            foreach (var node in group.Elements("sets"))
             {
-                switch (node.Name)
-                {
-                    case "set":
-                        sets.Add(new Set(node));
-                        break;
-                    case "summary":
-                        summary = new Summary(node);
-                        break;
-                    default:
-                        break;
-                }
-                Console.WriteLine(node.Name);
+                sets.Add(new Set(node));
+            }
+            foreach (var node in group.Elements("summary"))
+            {
+                summary = new Summary(node);
             }
             return new Report() { Sets = sets.ToArray(), summary = summary };
         }
