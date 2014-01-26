@@ -9,9 +9,6 @@
 // ------------------------------------------------------------------------------
 namespace Simian_Reporter
 {
-    using System.Linq;
-    using System.Text;
-    using System.Collections.Generic;
     using System;
     
     /// <summary>
@@ -28,36 +25,70 @@ namespace Simian_Reporter
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"
-\documentclass{report}[10pt]
-
-\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue]{hyperref}
-\usepackage{textcomp }
-\usepackage{forarray}
-
-
-\newcommand{\fileLocation}[2]{$\textrangle$ #1 \textbf{---} #2}
-\newcommand{\fileVs}[1]{
-
-	\ForEachX{|}{\thislevelitem}{#1}
-}
-
-\title{Simian Report}
-
-\begin{document}
-
-\maketitle
-
-\tableofcontents
-
-");
+            this.Write("\\documentclass{report}[10pt]\r\n\r\n\\usepackage[colorlinks=true, linkcolor=black, url" +
+                    "color=blue]{hyperref}\r\n\\usepackage{textcomp }\r\n\r\n\r\n\\newcommand{\\fileLocation}[2]" +
+                    "{$\\textrangle$ #1 \\textbf{---} #2}\r\n\r\n\\title{Simian Report}\r\n\r\n\\begin{document}\r" +
+                    "\n\r\n\\maketitle\r\n\r\n\\tableofcontents\r\n\r\n\r\n\\chapter{About this report}\r\n\r\nThis repor" +
+                    "t was auto-generated using the Simian Reporter tool. This tool takes the result " +
+                    "of running the \\href{http://www.harukizaemon.com/simian/index.html}{Simian code " +
+                    "detection tool} and generates this report based on that. This report is very use" +
+                    "ful to look at the results when running Simian on a large number of lines of cod" +
+                    "e, where it reports many duplicate blocks. You can use this report to get a bett" +
+                    "er idea of what files should have common functionality removed. It\'s also useful" +
+                    " as a team report to report on the amount of code duplication.\r\n\r\n\\section{Copyr" +
+                    "ight}\r\n\r\nThis report tool is free to use for non-commercial/non-government and e" +
+                    "valuation purposes (evaluation must be no longer than 15 days). In order to gene" +
+                    "rate reports for commercial or government purposes, an appropriate license must " +
+                    "be obtained for both Simian and for this tool.\r\n\r\nThese reports may only be dist" +
+                    "ributed if the generator of the reports has the permission of both Simian and th" +
+                    "is report generator.\r\n\r\n\\section{Parts of this report}\r\n\r\nThis report contains s" +
+                    "everal chapters which are different views of the result of the code analysis. Us" +
+                    "e whichever view is most appropriate.\r\n\r\n\\subsection{Overview}\r\n\r\nAn overview of" +
+                    " the result of the analysis is contained here. It idenfies which files are prime" +
+                    " candidates for refactoring out common functionality. It also reports on the amo" +
+                    "unt of duplication in the project, and gives a score for the project.\r\n\r\n\r\n\\subs" +
+                    "ection{File to File comparison}\r\n\r\nThis chapter will group all the matching bloc" +
+                    "ks into sections based upon the files they compare. This gives a much better vie" +
+                    "w to look at than the block level which Simian provides. The comparisons in this" +
+                    " section are ordered by total number of similar lines contained in the files.\r\n\r" +
+                    "\n\\subsection{Suggestions for functions}\r\n\r\nA more experimental chapter which con" +
+                    "tains suggested new classes or functions. \r\n\r\n\\subsection{Raw Data}\r\n\r\nThis chap" +
+                    "ter contains all the raw data from the Simian tool. It is included here so that " +
+                    "the original Simian report is not needed (except to maybe recompile this documen" +
+                    "t) and can be discarded. All the blocks that are listed as duplicates are placed" +
+                    " in this chapeter. Each section contains one block, and states the source files," +
+                    " and their start and ending lines, along with how much data is matching.\r\n\r\nIf t" +
+                    "his report is generated on the same machine as the Simian report was generated, " +
+                    "and the report has access to the same files as the simian report, then this sect" +
+                    "ion will gain additional data not included in the Simian Report. This will inclu" +
+                    "de the size of the files, as well as the lines of code that are marked as matchi" +
+                    "ng. Including the lines of code could potentially make this report very large, s" +
+                    "o be warned.\r\n\r\n\\chapter{Overview}\r\n\r\nThe project scanned has ");
             
-            #line 28 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Text));
+            #line 53 "C:\Users\mirhagk\Documents\GitHub\Simian_Reporter\Simian Reporter\Simian Reporter\LaTeX_Report.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(report.summary.DuplicateFileCount));
             
             #line default
             #line hidden
-            this.Write("\r\n\r\n\\end{document}");
+            this.Write(@" duplicate files.
+
+
+\chapter{File to File comparison}
+
+\section{Browser.js - Writer.js}
+
+\fileLocation{Writer.js}{C:\textbackslash Users\textbackslash nathan\textbackslash Documents\textbackslash Github\textbackslash personalsite\textbackslash website\textbackslash node\_modules\textbackslash bliss\textbackslash lib\textbackslash writer.js}\\\\
+
+\hrulefill
+
+{test}
+
+\chapter{Suggestions for functions}
+
+\chapter{Raw Data}
+
+
+\end{document}");
             return this.GenerationEnvironment.ToString();
         }
     }

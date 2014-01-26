@@ -1,21 +1,10 @@
-﻿<#@ template language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
-
-\documentclass{report}[10pt]
+﻿\documentclass{report}[10pt]
 
 \usepackage[colorlinks=true, linkcolor=black, urlcolor=blue]{hyperref}
 \usepackage{textcomp }
-\usepackage{forarray}
 
 
 \newcommand{\fileLocation}[2]{$\textrangle$ #1 \textbf{---} #2}
-\newcommand{\fileVs}[1]{
-
-	\ForEachX{|}{\thislevelitem}{#1}
-}
 
 \title{Simian Report}
 
@@ -25,6 +14,58 @@
 
 \tableofcontents
 
-<#=Text#>
+
+\chapter{About this report}
+
+This report was auto-generated using the Simian Reporter tool. This tool takes the result of running the \href{http://www.harukizaemon.com/simian/index.html}{Simian code detection tool} and generates this report based on that. This report is very useful to look at the results when running Simian on a large number of lines of code, where it reports many duplicate blocks. You can use this report to get a better idea of what files should have common functionality removed. It's also useful as a team report to report on the amount of code duplication.
+
+\section{Copyright}
+
+This report tool is free to use for non-commercial/non-government and evaluation purposes (evaluation must be no longer than 15 days). In order to generate reports for commercial or government purposes, an appropriate license must be obtained for both Simian and for this tool.
+
+These reports may only be distributed if the generator of the reports has the permission of both Simian and this report generator.
+
+\section{Parts of this report}
+
+This report contains several chapters which are different views of the result of the code analysis. Use whichever view is most appropriate.
+
+\subsection{Overview}
+
+An overview of the result of the analysis is contained here. It idenfies which files are prime candidates for refactoring out common functionality. It also reports on the amount of duplication in the project, and gives a score for the project.
+
+
+\subsection{File to File comparison}
+
+This chapter will group all the matching blocks into sections based upon the files they compare. This gives a much better view to look at than the block level which Simian provides. The comparisons in this section are ordered by total number of similar lines contained in the files.
+
+\subsection{Suggestions for functions}
+
+A more experimental chapter which contains suggested new classes or functions. 
+
+\subsection{Raw Data}
+
+This chapter contains all the raw data from the Simian tool. It is included here so that the original Simian report is not needed (except to maybe recompile this document) and can be discarded. All the blocks that are listed as duplicates are placed in this chapeter. Each section contains one block, and states the source files, and their start and ending lines, along with how much data is matching.
+
+If this report is generated on the same machine as the Simian report was generated, and the report has access to the same files as the simian report, then this section will gain additional data not included in the Simian Report. This will include the size of the files, as well as the lines of code that are marked as matching. Including the lines of code could potentially make this report very large, so be warned.
+
+\chapter{Overview}
+
+The project scanned has <#=report.summary.DuplicateFileCount#> duplicate files.
+
+
+\chapter{File to File comparison}
+
+\section{Browser.js - Writer.js}
+
+\fileLocation{Writer.js}{C:\textbackslash Users\textbackslash nathan\textbackslash Documents\textbackslash Github\textbackslash personalsite\textbackslash website\textbackslash node\_modules\textbackslash bliss\textbackslash lib\textbackslash writer.js}\\\\
+
+\hrulefill
+
+{test}
+
+\chapter{Suggestions for functions}
+
+\chapter{Raw Data}
+
 
 \end{document}
